@@ -10,7 +10,7 @@ text definitions to create and modify diagrams dynamically.
 An example of the output of this extension is provided below (this extension
 renders the SVG diagram shown below):
 
-![image](https://user-images.githubusercontent.com/108611/142772916-03bafc46-c176-4673-b8b3-da19999dccd8.png)
+![image](https://user-images.githubusercontent.com/108611/163728376-207437a8-fee0-4e3e-a9ad-8456c514de44.png)
 
 # Usage
 
