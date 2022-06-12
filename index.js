@@ -39,7 +39,8 @@ async function createFigures() {
       await mermaid.mermaidAPI.render(
         'diagram-' + figureNum, mermaidSource, (svgCode, bindFunctions) => {
           const template = document.createElement('template');
-          template.innerHTML = svgCode.trim();
+          const cleanedSvg = svgCode.trim().replace(/height="[0-9]*"/, '');
+          template.innerHTML = cleanedSvg;
           figure.parentElement.prepend(template.content.firstChild);
           figure.remove();
       });
@@ -49,9 +50,6 @@ async function createFigures() {
         e, mermaidSource);
       continue;
     }
-
-    // append the examples
-    //example.after(preJwt);
   }
 }
 
