@@ -17,7 +17,7 @@ renders the SVG diagram shown below):
 To use this extension, include the following line in your ReSpec file:
 
 ```html
-<script class="remove" src="https://cdn.jsdelivr.net/gh/digitalbazaar/respec-mermaid@1.0.0/dist/main.js"></script>
+<script class="remove" src="https://cdn.jsdelivr.net/gh/digitalbazaar/respec-mermaid@1.0.1/dist/main.js"></script>
 ```
 
 and set the following configuration option in your ReSpec configuration:
