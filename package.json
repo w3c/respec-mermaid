@@ -17,7 +17,7 @@
   },
   "homepage": "https://github.com/digitalbazaar/respec-mermaid#readme",
   "dependencies": {
-    "mermaid": "^9.0.0"
+    "mermaid": "^10.6.1"
   },
   "devDependencies": {
     "http-server": "^13.0.0",
