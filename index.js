@@ -36,14 +36,13 @@ async function createFigures() {
     const mermaidSource = figure.firstChild.textContent;
     // try rendering the diagram
     try {
-      await mermaid.mermaidAPI.render(
-        'diagram-' + figureNum, mermaidSource, (svgCode, bindFunctions) => {
-          const template = document.createElement('template');
-          const cleanedSvg = svgCode.trim().replace(/height="[0-9]*"/, '');
-          template.innerHTML = cleanedSvg;
-          figure.parentElement.prepend(template.content.firstChild);
-          figure.remove();
-      });
+      const {svg} = await mermaid.mermaidAPI.render(
+        'diagram-' + figureNum, mermaidSource);
+      const template = document.createElement('template');
+      const cleanedSvg = svg.trim().replace(/height="[0-9]*"/, '');
+      template.innerHTML = cleanedSvg;
+      figure.parentElement.prepend(template.content.firstChild);
+      figure.remove();
       figureNum++;
     } catch(e) {
       console.error('respec-mermaid error: Failed to generate figure.',
