@@ -1,6 +1,6 @@
 import mermaid from 'mermaid';
 
-function addMermaidStyles() {
+function addMermaidStyles(document) {
   const mermaidStyles = document.createElement('style');
 
   mermaidStyles.innerHTML += `
@@ -10,7 +10,7 @@ function addMermaidStyles() {
   document.getElementsByTagName('head')[0].appendChild(mermaidStyles);
 }
 
-function addMermaidScripts() {
+function addMermaidScripts(document) {
   const mermaidScripts = document.createElement('script');
   mermaidScripts.type = 'text/javascript';
   mermaidScripts.text += `
@@ -21,12 +21,12 @@ function addMermaidScripts() {
   mermaid.mermaidAPI.initialize({startOnLoad:false});
 }
 
-async function createFigures() {
+async function createFigures(config, document, utils) {
   // add scripts for figures
-  addMermaidScripts();
+  addMermaidScripts(document);
 
   // add styles for figures
-  addMermaidStyles();
+  addMermaidStyles(document);
 
   // process every mermaid figure in the document
   const mermaidFigures = document.querySelectorAll(".mermaid");
@@ -45,8 +45,10 @@ async function createFigures() {
       figure.remove();
       figureNum++;
     } catch(e) {
-      console.error('respec-mermaid error: Failed to generate figure.',
-        e, mermaidSource);
+      utils.showError('Failed to generate figure', {
+        elements: [figure.firstChild],
+        cause: e,
+      });
       continue;
     }
   }
