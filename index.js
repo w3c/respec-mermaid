@@ -56,5 +56,7 @@ async function createFigures(config, document, utils) {
 
 // setup exports on window
 window.respecMermaid = {
-  createFigures
+  createFigures,
+  // Export mermaid as well so that plugins can register custom diagrams if they want to.
+  mermaid
 }
