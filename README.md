@@ -31,6 +31,35 @@ Check this repository's
 [tags](https://github.com/digitalbazaar/respec-mermaid/tags) for all known
 releases.
 
+## Mermaid extensions
+
+Extensions to Mermaid can be added by using `window.respecMermaid.mermaid` to access mermaid:
+
+```js
+// index.js 
+
+async function registerDiagrams() {
+    await window.respecMermaid.mermaid.registerExternalDiagrams([myDiagrams]);
+}
+
+window.myRespecMermaidExtension = {
+    registerDiagrams
+};
+```
+
+Adding the appropriate script tags
+
+```html
+<script class="remove" src="https://url.to.my.extension/index.js"></script>
+```
+
+And being initialized in the ReSpec configuration before the figures are created: 
+
+```js
+preProcess: [window.myRespecMermaidExtension.registerDiagrams, window.respecMermaid.createFigures]
+```
+
+
 # ReSpec Markup
 
 To use this extension, you must add the `mermaid` class to your content block.
