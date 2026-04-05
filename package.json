@@ -8,16 +8,16 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/digitalbazaar/respec-mermaid.git"
+    "url": "git+https://github.com/w3c/respec-mermaid.git"
   },
   "author": "",
   "license": "",
   "bugs": {
-    "url": "https://github.com/digitalbazaar/respec-mermaid/issues"
+    "url": "https://github.com/w3c/respec-mermaid/issues"
   },
-  "homepage": "https://github.com/digitalbazaar/respec-mermaid#readme",
+  "homepage": "https://github.com/w3c/respec-mermaid#readme",
   "dependencies": {
-    "mermaid": "^11.6.0"
+    "mermaid": "^11.14.0"
   },
   "devDependencies": {
     "http-server": "^14.1.1",

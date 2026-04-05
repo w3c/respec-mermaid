@@ -5,7 +5,7 @@ function addMermaidStyles(document) {
 
   mermaidStyles.innerHTML += `
   /* Any custom mermaid.js scripts will go here. */
-  }`;
+  `;
 
   document.getElementsByTagName('head')[0].appendChild(mermaidStyles);
 }
@@ -18,7 +18,7 @@ function addMermaidScripts(document) {
   `;
   document.getElementsByTagName('head')[0].appendChild(mermaidScripts);
 
-  mermaid.mermaidAPI.initialize({startOnLoad:false});
+  mermaid.initialize({startOnLoad:false, htmlLabels: false});
 }
 
 async function createFigures(config, document, utils) {
@@ -36,16 +36,19 @@ async function createFigures(config, document, utils) {
     const mermaidSource = figure.firstChild.textContent;
     // try rendering the diagram
     try {
-      const {svg} = await mermaid.mermaidAPI.render(
+      const {svg} = await mermaid.render(
         'diagram-' + figureNum, mermaidSource);
       const template = document.createElement('template');
-      const cleanedSvg = svg.trim().replace(/height="[0-9]*"/, '');
-      template.innerHTML = cleanedSvg;
+      const cleanedSvg = svg.trim();//.replace(/height="[0-9]*"/, '');
+      const dataUrl = 'data:image/svg+xml;base64,' + window.btoa(cleanedSvg);
+      let style =
+        figure.getAttribute('style') || 'max-width: 100%; aspect-ratio: 2/1;';
+      template.innerHTML = `<img style="${style}" src="${dataUrl}">`;
       figure.parentElement.prepend(template.content.firstChild);
       figure.remove();
       figureNum++;
     } catch(e) {
-      utils.showError('Failed to generate figure', {
+      console.error('Failed to generate figure', {
         elements: [figure.firstChild],
         cause: e,
       });
