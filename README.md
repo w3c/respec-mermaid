@@ -36,7 +36,7 @@ releases.
 Extensions to Mermaid can be added by using `window.respecMermaid.mermaid` to access mermaid:
 
 ```js
-// index.js 
+// index.js
 
 async function registerDiagrams() {
     await window.respecMermaid.mermaid.registerExternalDiagrams([myDiagrams]);
@@ -53,7 +53,7 @@ Adding the appropriate script tags
 <script class="remove" src="https://url.to.my.extension/index.js"></script>
 ```
 
-And being initialized in the ReSpec configuration before the figures are created: 
+And being initialized in the ReSpec configuration before the figures are created:
 
 ```js
 preProcess: [window.myRespecMermaidExtension.registerDiagrams, window.respecMermaid.createFigures]
@@ -63,11 +63,26 @@ preProcess: [window.myRespecMermaidExtension.registerDiagrams, window.respecMerm
 # ReSpec Markup
 
 To use this extension, you must add the `mermaid` class to your content block.
-
+The block-level element that you use is replaced by an `img` element that
+contains a data URL of the rendered SVG diagram.
 
 ```html
 <figure>
   <pre class="diagram mermaid">
+sequenceDiagram
+    Alice->>John: Hello John, how are you?
+    John-->>Alice: Great!
+    Alice-)John: See you later!
+  </pre>
+  <figcaption>A sequence diagram example</figcaption>
+</figure>
+```
+
+You can override the default size of the diagram via the `style` attribute:
+
+```html
+<figure>
+  <pre class="diagram mermaid" style="max-width:25%">
 sequenceDiagram
     Alice->>John: Hello John, how are you?
     John-->>Alice: Great!
